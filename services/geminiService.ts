@@ -24,5 +24,10 @@ export const generateGameIdea = async (genre: string) => {
     },
   });
 
-  return JSON.parse(response.text);
+  const text = response.text;
+  if (!text) {
+    throw new Error("O modelo não retornou conteúdo de texto.");
+  }
+
+  return JSON.parse(text);
 };
